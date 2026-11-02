@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111827" />
+  <title>CHAOS CLUB – Multiplayer</title>
+</head>
+<body>
+  <div id="game"></div>
+  <div id="hud">
+    <div class="brand">CHAOS <span>CLUB</span></div>
+    <div class="topline">
+      <div class="pill" id="connection">Verbinde …</div>
+      <div class="pill" id="players">Spieler: 1 / 16</div>
+    </div>
+    <div class="help">WASD bewegen · Leertaste springen · Maus drehen · ESC Maus lösen</div>
+    <div id="crosshair">+</div>
+    <div id="toast"></div>
+  </div>
+  <section id="join-panel">
+    <div class="join-card lobby-card">
+      <div class="eyebrow">BROWSER PARTY GAME</div>
+      <h1>CHAOS <span>CLUB</span></h1>
+      <p>Erstelle eine Lobby oder tritt deinen Freunden bei.</p>
+      <label for="nickname">Dein Spielername</label>
+      <input id="nickname" maxlength="16" placeholder="Spielername" value="Spieler" />
+      <div class="settings">
+        <div class="setting-heading"><label for="player-limit">Spielerlimit</label><strong><span id="player-limit-value">16</span> Spieler</strong></div>
+        <input id="player-limit" type="range" min="0" max="16" value="16" />
+        <small>0 bedeutet: nur der Host.</small>
+        <div class="setting-heading second"><label for="round-count">Minispiele pro Runde</label><strong><span id="round-count-value">5</span></strong></div>
+        <input id="round-count" type="range" min="1" max="10" value="5" />
+      </div>
+      <button id="create-lobby">LOBBY ERSTELLEN</button>
+      <div class="join-divider"><span>ODER</span></div>
+      <label for="lobby-code">Lobby-Code</label>
+      <input id="lobby-code" maxlength="12" placeholder="Lobby-ID eingeben" />
+      <button id="join-lobby" class="secondary-button">LOBBY BEITRETEN</button>
+      <small>Bis zu 16 Spieler · Browser-Multiplayer</small>
+      <div id="join-error"></div>
+    </div>
+  </section>
+
+  <section id="room-panel" class="hidden-panel">
+    <div class="room-card">
+      <div class="room-header">
+        <div><div class="eyebrow">DEINE PARTY</div><h2>LOBBY</h2></div>
+        <div class="room-code-wrap"><small>LOBBY-CODE</small><strong id="room-code">------</strong><button id="copy-code" class="mini-button">KOPIEREN</button></div>
+      </div>
+      <div class="room-columns">
+        <div class="room-players">
+          <h3>Spieler <span id="room-count">0/16</span></h3>
+          <div id="room-player-list"></div>
+          <button id="ready-button" class="secondary-button">BEREIT</button>
+          <button id="leave-room" class="ghost-button">LOBBY VERLASSEN</button>
+        </div>
+        <div class="room-games">
+          <h3>Minispiele auswählen</h3>
+          <div class="mode-switch">
+            <label><input type="radio" name="selection-mode" value="random" checked> Zufällig auswählen</label>
+            <label><input type="radio" name="selection-mode" value="custom"> Selbst auswählen</label>
+          </div>
+          <div id="random-settings">
+            <small>Die Minispiele werden beim Start zufällig zusammengestellt.</small>
+          </div>
+          <div id="custom-games" class="game-picker hidden-panel"></div>
+          <div id="host-note">Nur der Host kann die Runde starten und die Spiele festlegen.</div>
+          <button id="start-match">RUNDE STARTEN</button>
+        </div>
+      </div>
+      <div id="room-status">Warte auf Spieler …</div>
+      <div id="room-error"></div>
+    </div>
+  </section>
+
+  <section id="match-panel" class="hidden-panel">
+    <div class="match-card">
+      <div class="eyebrow">CHAOS CLUB MATCH</div>
+      <h2 id="match-title">DIE RUNDE BEGINNT!</h2>
+      <p id="match-description">Macht euch bereit.</p>
+      <div id="match-queue"></div>
+      <button id="back-to-lobby" class="secondary-button">ZURÜCK ZUR LOBBY (TEST)</button>
+    </div>
+  </section>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
